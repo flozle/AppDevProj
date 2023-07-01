@@ -1,0 +1,169 @@
+{% extends 'base.html' %}
+{% block title %}
+Retrieve Staff
+{% endblock %}
+
+{% block content %}
+<h1 class="display-4">Retrieve Staff</h1>
+<!-- Nav tabs -->
+<ul class="nav nav-tabs">
+    <li class="nav-item">
+        <a class="nav-link active" data-bs-toggle="tab" href="#Trainers">Trainers</a>
+    </li>
+    <li class="nav-item">
+        <a class="nav-link" data-bs-toggle="tab" href="#Admins">Admins</a>
+    </li>
+
+    </li>
+</ul>
+
+<!-- Tab panes -->
+<div class="tab-content">
+    <div class="tab-pane container-fluid active" id="Trainers">
+        <br>
+        <h2>Trainers</h2>
+        <br>
+        <table class="table table-striped">
+
+            <thead>
+                <tr>
+                    <th>Trainer ID</th>
+                    <th>First Name</th>
+                    <th>Last Name</th>
+                    <th>Email</th>
+                    <th>Mobile No</th>
+                    <th>Password</th>
+                    <th></th>
+                    <th></th>
+                </tr>
+            </thead>
+
+            <tbody>
+                {% for trainer in trainers_list %}
+                <tr>
+                    <td>{{ trainer.get_trainer_id() }}</td>
+                    <td>{{ trainer.get_first_name() }}</td>
+                    <td>{{ trainer.get_last_name() }}</td>
+                    <td>{{ trainer.get_email() }}</td>
+                    <td>{{ trainer.get_mobile_no() }}</td>
+                    <td>{{ trainer.get_password() }}</td>
+
+                    <td><a href="/update_staff/{{trainer.get_trainer_id()}}/T" class="btn btn-warning">Update</a></td>
+
+                    <td>
+                        <form action="{{url_for('delete_trainer', id=trainer.get_trainer_id())}}" method="POST">
+                            <!-- Button to Open the Modal -->
+                            <button type="button" class="btn btn-danger" data-bs-toggle="modal"
+                            data-bs-target="#myModal_{{trainer.get_trainer_id()}}_t">
+                            Delete
+                        </button>
+
+                        <!-- The Modal -->
+                        <div class="modal" id="myModal_{{trainer.get_trainer_id()}}_t">
+                            <div class="modal-dialog">
+                                <div class="modal-content">
+
+                                    <!-- Modal Header -->
+                                    <div class="modal-header">
+                                        <h4 class="modal-title">Delete Confirmation</h4>
+                                        <button type="button" class="btn-close" data-bs-dismiss="modal"></button>
+                                    </div>
+
+                                    <!-- Modal body -->
+                                    <div class="modal-body">
+                                        Are you sure you want to delete {{trainer.get_first_name()}} {{trainer.get_last_name()}}?
+                                    </div>
+
+                                    <!-- Modal footer -->
+                                    <div class="modal-footer">
+                                        <input type="submit" value="Delete" class="btn btn-danger">
+                                        <button type="button" class="btn btn-secondary"
+                                            data-bs-dismiss="modal">Cancel</button>
+                                        </div>
+                                    </div>
+                                </div>
+                            </div>
+                        </form>
+                    </td>
+                </tr>
+                {% endfor %}
+            </tbody>
+        </table>
+    </div>
+
+
+    <div class="tab-pane container-fluid" id="Admins">
+        <br>
+        <h2>Admins</h2>
+        <br>
+        <table class="table table-striped">
+
+            <thead>
+                <tr>
+                    <th>Admin ID</th>
+                    <th>First Name</th>
+                    <th>Last Name</th>
+                    <th>Email</th>
+                    <th>Mobile No</th>
+                    <th>Password</th>
+                    <th></th>
+                    <th></th>
+                </tr>
+            </thead>
+
+            <tbody>
+                {% for admin in admins_list %}
+                <tr>
+                    <td>{{ admin.get_admin_id() }}</td>
+                    <td>{{ admin.get_first_name() }}</td>
+                    <td>{{ admin.get_last_name() }}</td>
+                    <td>{{ admin.get_email() }}</td>
+                    <td>{{ admin.get_mobile_no() }}</td>
+                    <td>{{ admin.get_password() }}</td>
+
+                    <td><a href="/update_staff/{{admin.get_admin_id()}}/A" class="btn btn-warning">Update</a></td>
+
+                    <td>
+                        <form action="{{url_for('delete_admin', id=admin.get_admin_id())}}" method="POST">
+                            <!-- Button to Open the Modal -->
+                            <button type="button" class="btn btn-danger" data-bs-toggle="modal"
+                            data-bs-target="#myModal_{{admin.get_admin_id()}}_a">
+                            Delete
+                        </button>
+
+                        <!-- The Modal -->
+                        <div class="modal" id="myModal_{{admin.get_admin_id()}}_a">
+                            <div class="modal-dialog">
+                                <div class="modal-content">
+
+                                    <!-- Modal Header -->
+                                    <div class="modal-header">
+                                        <h4 class="modal-title">Delete Confirmation</h4>
+                                        <button type="button" class="btn-close" data-bs-dismiss="modal"></button>
+                                    </div>
+
+                                    <!-- Modal body -->
+                                    <div class="modal-body">
+                                        Are you sure you want to delete {{admin.get_first_name()}} {{admin.get_last_name()}}?
+                                    </div>
+
+                                    <!-- Modal footer -->
+                                    <div class="modal-footer">
+                                        <input type="submit" value="Delete" class="btn btn-danger">
+                                        <button type="button" class="btn btn-secondary"
+                                            data-bs-dismiss="modal">Cancel</button>
+                                        </div>
+                                    </div>
+                                </div>
+                            </div>
+                        </form>
+                    </td>
+                </tr>
+                {% endfor %}
+            </tbody>
+        </table>
+    </div>
+
+</div>
+
+{% endblock %}

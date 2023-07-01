@@ -1,0 +1,90 @@
+{% extends "base.html" %}
+{% block title %}Everytime Fitness - Shop{% endblock %}
+
+{% block javascript %}
+{% endblock %}
+
+{% block css %}
+	<link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/4.0.0/css/bootstrap.min.css">
+	<link href="https://fonts.googleapis.com/css?family=Montserrat" rel="stylesheet">
+    <link rel="stylesheet" type="text/css" href="{{ url_for('static', filename='css/cart/shopping-cart.css')}}">
+{% endblock %}
+
+{% block content %}
+
+<main class="page">
+	 	<section class="shopping-cart dark">
+	 		<div class="container">
+		        <div class="block-heading">
+		          <h2>My Cart</h2>
+		        </div>
+		        <div class="content">
+	 				<div class="row">
+	 					<div class="col-md-12 col-lg-8">
+	 						<div class="items">
+								{% for product in user_cart %}
+								{% for key in product %}
+				 				<div class="product">
+				 					<div class="row">
+										<div class="col-md-1 remove-item">
+											<form action="{{url_for('remove_from_cart', item_index=user_cart.index(product))}}" method="POST">
+												<input type="submit" value="X" class="btn btn-link remove" onclick="return;">
+											</form>
+					 					</div>
+					 					<div class="col-md-3">
+					 						<img class="img-fluid mx-auto d-block image" src="static/uploads/images/{{ key.get_image() }}">
+					 					</div>
+					 					<div class="col-md-8">
+					 						<div class="info">
+						 						<div class="row">
+							 						<div class="col-md-5 product-name">
+							 							<div class="product-name">
+															{{ key.get_name() }}
+								 							<div class="product-info">
+																<a href="">Edit</a>
+									 						</div>
+									 					</div>
+							 						</div>
+							 						<div class="col-md-4 quantity">
+							 							<label>Quantity:</label>
+							 							<p id="quantity">{{ key.get_count() }}x</p>
+							 						</div>
+							 						<div class="col-md-3 price">
+							 							<span>${{ (key.get_count() * key.get_price())}}</span>
+							 						</div>
+							 					</div>
+							 				</div>
+					 					</div>
+					 				</div>
+				 				</div>
+								{% endfor %}
+								{% endfor %}
+				 			</div>
+			 			</div>
+			 			<div class="col-md-12 col-lg-4">
+			 				<div class="summary">
+			 					<h3>Summary</h3>
+			 					<div class="summary-item"><span class="text">Subtotal</span><span class="price">${{ subtotal }}</span></div>
+			 					<div class="summary-item"><span class="text">Discount</span><span class="price">$</span></div>
+			 					<div class="summary-item"><span class="text">Shipping</span><span class="price">$</span></div>
+			 					<div class="summary-item"><span class="text">Total</span><span class="price">${{ total }}</span></div>
+			 					<button type="button" class="btn btn-primary btn-lg btn-block">Checkout</button>
+
+								<form class="coupon-form">
+									<div class="form-group">
+										<label>Have coupon?</label>
+										<input type="text" class="form-control coupon" name="" placeholder="Coupon code"> <button class="btn btn-primary btn-apply coupon">Apply</button>
+									</div>
+								</form>
+							</div>
+
+
+			 			</div>
+		 			</div>
+		 		</div>
+	 		</div>
+		</section>
+	</main>
+
+{% endblock %}
+

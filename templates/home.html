@@ -1,0 +1,21 @@
+{% extends "base.html" %}
+{% block title %}Home{% endblock %}
+
+{% block content %}
+<h1 class="display-4">Home</h1>
+<p>Hello world! {{ email }}, {{ id }}</p>
+<br><br><br>
+<p>links (temp)</p>
+<a href="/create_user">register a user</a><br>
+<a href="/create_staff">create staff</a><br>
+<a href="/login">login</a><br>
+<a href="/retrieve_user">retrieve user</a><br>
+<a href="/retrieve_staff">retrieve satff</a><br>
+<a href="/manage_account">edit personal account</a><br>
+<a href="/manage_shop">manage shop</a><br>
+<a href="/shop">view shop</a><br>
+<a href="/cart">my cart</a><br>
+<a href="/shop_product">test product</a>
+{% endblock %}
+
+

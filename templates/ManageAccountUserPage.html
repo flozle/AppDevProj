@@ -1,0 +1,129 @@
+{% extends 'base.html' %}
+{% block title %}
+Account Management
+{% endblock %}
+
+
+{% block javascript %}
+<script src="{{ url_for('static', filename='javascript/account_management/jquery.min.js')}}"></script>
+<script src="{{ url_for('static', filename='javascript/account_management/popper.js')}}"></script>
+<script src="{{ url_for('static', filename='javascript/account_management/bootstrap.min.js')}}"></script>
+<script src="{{ url_for('static', filename='javascript/account_management/main.js')}}"></script>
+<link rel="stylesheet" href="{{ url_for('static', filename='css/account_management/style.css')}}">
+<script>
+    var toggle_password = document.getElementById('toggle_password');
+    var toggle_confirm_password = document.getElementById('toggle_confirm_password');
+
+    toggle_password.addEventListener('change', function () {
+        var x = document.getElementById('{{form.password.id}}');
+        if (this.checked) {
+            x.type = 'text';
+        } else {
+            x.type = 'password';
+        }
+    })
+
+    toggle_confirm_password.addEventListener('change', function () {
+        var x = document.getElementById('{{form.confirm_password.id}}');
+        if (this.checked) {
+            x.type = 'text';
+        } else {
+            x.type = 'password';
+        }
+    })
+</script>
+</script>
+{% endblock %}
+
+{% block css %}
+<!--===============================================================================================-->
+<link href='https://fonts.googleapis.com/css?family=Poppins:300,400,500,600,700,800,900' rel='stylesheet'>
+<!--===============================================================================================-->
+<link rel="stylesheet" href="https://stackpath.bootstrapcdn.com/font-awesome/4.7.0/css/font-awesome.min.css">
+<!--===============================================================================================-->
+<link rel="stylesheet" href="{{ url_for('static', filename='css/account_management/style.css')}}">
+<!--===============================================================================================-->
+{% endblock %}
+
+{% block content %}
+{% from "includes/_formHelper.html" import render_field %}
+
+<div class="wrapper d-flex align-items-stretch">
+    <nav id="sidebar">
+        <div class="custom-menu">
+            <button type="button" id="sidebarCollapse" class="btn btn-primary">
+            </button>
+        </div>
+        <div class="img bg-wrap text-center py-4">
+            <div class="user-logo">
+                <!-- edit in the future -->
+                <div class="img" style="background-image: url(images/logo.jpg);"></div>
+                <h3>Catriona Henderson</h3>
+            </div>
+        </div>
+        <ul class="list-unstyled components mb-5">
+            <li class="active">
+                <a href="#"><span class="fa fa-home mr-3"></span> Home</a>
+            </li>
+            <li>
+                <a href="#"><span class="fa fa-download mr-3 notif"><small
+                            class="d-flex align-items-center justify-content-center">5</small></span> Download</a>
+            </li>
+            <li>
+                <a href="#"><span class="fa fa-gift mr-3"></span> Gift Code</a>
+            </li>
+            <li>
+                <a href="#"><span class="fa fa-trophy mr-3"></span> Top Review</a>
+            </li>
+            <li>
+                <a href="#"><span class="fa fa-cog mr-3"></span> Settings</a>
+            </li>
+            <li>
+                <a href="#"><span class="fa fa-support mr-3"></span> Support</a>
+            </li>
+            <li>
+                <a href="#"><span class="fa fa-sign-out mr-3"></span> Sign Out</a>
+            </li>
+        </ul>
+
+    </nav>
+
+    <!-- Page Content  -->
+    <div id="content" class="p-4 p-md-5 pt-5">
+        <h1>Register</h1>
+<form method="POST" action="">
+    <div class="form-group">
+        {{ render_field(form.email, class="form-control") }}
+    </div>
+    <div class="form-group">
+        {{ render_field(form.mobile_no, class="form-control") }}
+
+    </div>
+    <div class="form-group">
+        <!-- the checkbox to toggle the password -->
+        <div class="toggle_password">
+            <input type="checkbox" id="toggle_password">
+            <label for="toggle_password" class="checker"></label>
+        </div>
+        {{ render_field(form.password, class="form-control") }}
+    </div>
+    <div class="form-group">
+        <!-- the checkbox to toggle the password -->
+        <div class="toggle_password">
+            <input type="checkbox" id="toggle_confirm_password">
+            <label for="toggle_confirm_password" class="checker"></label>
+        </div>
+        {{ render_field(form.confirm_password, class="form-control") }}
+    </div>
+
+    <div class="storage" style="display: none;">
+        {{ render_field(form.old_email, class="form-control") }}
+        {{ render_field(form.old_mobile_no, class="form-control") }}
+    </div>
+
+    <input type="submit" value="Submit" class="btn btn-primary" />
+</form>
+    </div>
+</div>
+</section>
+{% endblock %}

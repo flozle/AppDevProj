@@ -1,0 +1,31 @@
+input[type='checkbox'] {
+    display: none;
+}
+
+input[type='checkbox'] + .checker {
+    background: url("/static/images/show_password.png") no-repeat left center;
+    background-position: left center;
+    background-size: auto 100%;
+    width: 40px;
+    height: 25px;
+    background-repeat: no-repeat;
+    cursor: pointer;
+}
+
+
+input[type='checkbox']:checked + .checker {
+    background: url("/static/images/hide_password.png") no-repeat left center;
+    background-position: left center;
+    background-size: auto 100%;
+    width: 40px;
+    height: 25px;
+    background-repeat: no-repeat;
+    cursor: pointer;
+}
+
+.toggle_password {
+    position: relative;
+    float: right;
+    display: flex;
+    top: 30px;
+}

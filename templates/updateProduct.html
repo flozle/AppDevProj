@@ -1,0 +1,38 @@
+{% extends "base.html" %}
+{% block title %}Everytime Fitness - My Profile{% endblock %}
+
+{% block content %}
+
+{% from "includes/_formHelper.html" import render_field %}
+
+<form method="POST" action="" enctype="multipart/form-data">
+    <div class="container-fluid">
+        <div class ="row">
+            <div class="col-sm-6 form-group">
+                {{ render_field(form.name) }}
+            </div>
+
+            <div class="col-sm-6- form-group">
+                {{ render_field(form.price) }}
+            </div>
+
+            <div class="col-sm-6- form-group">
+                {{ render_field(form.discount) }}
+            </div>
+
+            <div class="col-sm-6 form-group">
+                {{ render_field(form.description) }}
+            </div>
+
+            <div class="col-sm-6 form-group">
+                {{ render_field(form.image) }}
+            </div>
+
+            <div class="col-12 form-group">
+                <input type="submit" value="Submit" class="btn btn-primary"/>
+            </div>
+        </div>
+    </div>
+</form>
+
+{% endblock %}

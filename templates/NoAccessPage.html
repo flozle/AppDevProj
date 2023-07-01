@@ -1,0 +1,14 @@
+{% extends "base.html" %}
+{% block title %}Error{% endblock %}
+
+{% block content %}
+<h1 class="display-4">Home</h1>
+<p>You have no access to this page!! {{ email }}, {{ id }}</p>
+<br><br><br>
+<p>links (temp)</p>
+<a href="/create_user">register a user</a><br>
+<a href="/create_staff">create staff</a><br>
+<a href="/login">login</a><br>
+<a href="/retrieve_user">retrieve user</a><br>
+<a href="/retrieve_staff">retrieve satff</a>
+{% endblock %}
